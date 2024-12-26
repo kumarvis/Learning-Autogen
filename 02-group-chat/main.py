@@ -14,6 +14,7 @@ llm_config = {
     "config_list": config_list,
     "timeout": 120,  # in seconds
 }
+
 user_proxy = autogen.UserProxyAgent(
     name="Admin",
     system_message="A human admin. Interact with the planner to discuss the plan. Plan execution needs to be approved "
@@ -55,6 +56,7 @@ critic = autogen.AssistantAgent(
                    "plan includes adding verifiable info such as source URL.",
     llm_config=llm_config,
 )
+
 group_chat = autogen.GroupChat(
     agents=[user_proxy, coder, scientist, planner, critic], messages=[], max_round=12
 )
